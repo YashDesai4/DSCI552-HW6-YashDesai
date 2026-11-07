@@ -1,0 +1,43 @@
+[
+  [
+    "2. ISLR 6.6.3 - relaxing the lasso constraint",
+    [
+      "The useful idea here is that s controls how much freedom the lasso has. We minimize RSS while requiring sum_j |beta_j| <= s. At s=0, every slope is zero. As s gets larger, more coefficient values become possible. Once the least-squares solution fits inside the constraint, loosening it further makes no difference.",
+      "(a) Training RSS decreases or stays the same, so choice iv is the best answer. A larger s keeps all the earlier solutions available and adds new ones. The best fit therefore cannot become worse on the same training data.",
+      "(b) Test RSS usually falls at first and then rises, which is choice ii. Initially, less shrinkage helps the model capture real patterns. With too much freedom, it can also fit noise. This is the usual bias-variance pattern, rather than a rule that every individual data set must follow.",
+      "(c) Variance generally increases, so choose iii. A more flexible fit can change more when we replace the training sample.",
+      "(d) Squared bias generally decreases, so choose iv. Relaxing the constraint reduces the restriction that was pulling the coefficients toward zero.",
+      "(e) Irreducible error stays constant, so choose v. Changing s changes the model, but it does not remove the underlying noise in the response."
+    ]
+  ],
+  [
+    "3. ISLR 6.6.5 - identical predictors in ridge and lasso",
+    [
+      "Both predictor columns contain the same information. Since the predictors and response are centered, the unpenalized intercept is zero. Write x_i for the common predictor value and t=beta_1+beta_2. Also let A=sum_i x_i^2 and B=sum_i x_i y_i. The fitted values depend on t, not on how that total is split between the two coefficients.",
+      "(a) Ridge minimizes sum_i [y_i-x_i(beta_1+beta_2)]^2 + lambda(beta_1^2+beta_2^2). The first term measures the fit, and the second discourages large coefficients. The intercept is not penalized.",
+      "(b) Differentiating gives -2 sum_i x_i[y_i-x_i(beta_1+beta_2)] + 2 lambda beta_j=0 for j=1,2. Subtracting the equations leaves 2 lambda(beta_1-beta_2)=0. For lambda>0, beta_1=beta_2=B/(2A+lambda). Ridge shares the effect equally between identical predictors. At lambda=0, equal coefficients are not required.",
+      "(c) Lasso instead minimizes sum_i [y_i-x_i(beta_1+beta_2)]^2 + lambda(|beta_1|+|beta_2|). For a fixed total t, the smallest possible penalty is lambda|t|. Any same-sign split of t achieves it, so several coefficient pairs can describe the same fit.",
+      "(d) For A>0, the best total is t*=sign(B) max(|B|-lambda/2,0)/A. If t*>0, every pair (u,t*-u) with 0<=u<=t* works equally well. If t*<0, use t*<=u<=0. This shows why lasso coefficients need not be unique even though their predictions are the same. When t*=0, the minimum-penalty pair is (0,0), so nonuniqueness is not guaranteed. In the geometric picture, an RSS contour can touch a whole edge of the L1 diamond."
+    ]
+  ],
+  [
+    "4. ISLR 8.4.5 - combining ten tree predictions",
+    [
+      "For majority voting, each tree gets one vote: it votes Red when its Red probability is above 0.5. Six trees vote Red and four vote Green, so the final prediction is Red.",
+      "Averaging probabilities gives a different answer. The ten probabilities add to 4.5, so the average Red probability is 0.45. That makes the average Green probability 0.55, and this method predicts Green. The difference is that voting ignores how confident each tree is, while averaging keeps that information."
+    ]
+  ],
+  [
+    "5. ISLR 9.7.3 - understanding the maximal-margin classifier",
+    [
+      "(a) The seven points are (3,4), (2,2), (4,4), (1,4), (2,1), (4,3), and (4,1). Points 1-4 are Red and points 5-7 are Blue. The figure labels each point so it is easy to relate the geometry to the calculations.",
+      "(b) The optimal separating line is x_2=x_1-1/2, or 1/2-x_1+x_2=0. The nearest Red points lie on x_2=x_1, and the nearest Blue points lie on x_2=x_1-1. Putting the separator halfway between these parallel lines leaves equal room on both sides.",
+      "(c) Predict Red when 1/2-x_1+x_2>0 and Blue when it is negative. One set of coefficients is beta_0=1/2, beta_1=-1, beta_2=1. Multiplying all three by the same positive number changes the scale, but not the decision boundary.",
+      "(d) The distance from the separator to either supporting line is (1/2)/sqrt(2)=1/(2 sqrt(2)), about 0.3536. This is the margin on each side; the whole strip is 1/sqrt(2), about 0.7071, wide. Divide the coefficients by sqrt(2) for a unit normal. The canonical functional-margin coefficients are (1,-2,2).",
+      "(e) Points 2, 3, 5 and 6 are the support vectors: (2,2), (4,4), (2,1), and (4,3). They sit on the edges of the margin. The closest Red and Blue convex hulls are 1/sqrt(2) apart, so no separator can leave more than half that distance on both sides.",
+      "(f) Point 7, (4,1), lies safely beyond the Blue supporting line. A small movement that keeps it on that side leaves the support vectors in place, so the maximal-margin separator stays the same.",
+      "(g) The line x_2=x_1-1/4 also separates the classes. However, its Red-side margin is only 1/(4 sqrt(2)), so it leaves less room than the optimal line. The dotted line in the figure shows this alternative.",
+      "(h) Add a Blue point at (2,3). It lies inside the Red convex hull because (2,3)=0.5(2,2)+0.25(3,4)+0.25(1,4). A half-space containing all those Red points also contains this weighted average. The two classes can therefore no longer be strictly separated by a line."
+    ]
+  ]
+]

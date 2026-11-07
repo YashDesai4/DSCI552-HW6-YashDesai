@@ -1,0 +1,14 @@
+{
+  "notebook_sha256": "7496a84a44a299a01990978b24960a00079bedb39c6869f3d268a2a8a4107f3d",
+  "pages": 16,
+  "page_size": "US Letter",
+  "body_font_pt": 10,
+  "code_font_pt": 8.5,
+  "notebook_cells": 60,
+  "input_lines_included": 287,
+  "embedded_figures_included": 11,
+  "output_blocks_included": 31,
+  "code_cells_hidden": false,
+  "live_browser_preview_verified": false,
+  "scope": "This PDF renders every cell and saved output of the compact notebook; arbitrary browser/GitHub styles can paginate differently."
+}
